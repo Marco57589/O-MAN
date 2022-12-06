@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<head>
+	<title>Home</title>
+	<meta charset="UTF-8">
+	<link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/s1.js"></script>
+
+	<script>
+		$(document).ready(function(){
+		
+			var x = document.querySelectorAll('[id^="DataConsegna"]');
+			for (let i = 0; i < x.length; i++) {
+				if(!x[i].textContent.includes('None')){
+					var id1 = x[i].id;
+					var id2 = id1.split('-');
+					id2 = id2[1];
+					var s1 = "btn_";
+					var idBtn = s1.concat(id2);
+					document.getElementById(idBtn).setAttribute("disabled", "");
+				}
+			}
+		});
+		
+	</script>
+	
+</head>
+
+
+<body class="blue">
+	<div class="full-height">
+		<div class="row" style="margin-bottom: 0px !important">		
+			<nav>
+				<div class="nav-wrapper blue waves-effect waves-block waves-light">
+					<ul class="left hide-on-med-and-down">
+						<li><a class="btn blue btn-large waves-effect waves-light center-align" href="/"><i class="large material-icons">home</i></a>
+						</li>
+					</ul>				
+					<ul class="right hide-on-med-and-down">
+						<li><a href="/ricerca">Cerca Libro</a></li>
+						<li><a href="/areaPrestiti">Area Prestiti</a></li>
+						<li><a href="/gestioneLibri">Gestione Libri</a></li>
+						<li><a onclick="location.reload();"><i class="material-icons">refresh</i></a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>	
+		
+		<div class="row blue full-height" style="margin-bottom: 0px !important;">
+			<div class="col s1"></div>
+	
+			<div class="row col s10 center-align white">
+				<div class="row">
+					<br>
+					<div class="col s10 offset-s1 white-text z-depth-5 blue">
+						<form id="formPrestito" method="post" action="areaPrestiti">
+							<div class="card" id="card">
+								<div class="card-content white-text center-align col s6 offset-s3">
+									<p> Seleziona l'utente</p>
+									<select class="white-text selectList blue center-align" name="trovaUtente" id="userSelect" onchange="this.form.submit()">
+										<option value="">Seleziona un utente</option>
+										{% for u in utente %}
+											<option value='{{u}}' id='{{u}}' name="{{u}}">{{u}}</option>
+										{% endfor %}
+									</select>
+									<br>
+								</div>
+
+								<div class="card-tabs">
+									<ul class="tabs tabs-fixed-width tabs-transparent center-align">
+										<li class="tab" id="t1"><a class="active" id="at1">Utente:  {{tesseraUtente}}</a></li>
+										<li class="indicator"></li>
+									</ul>
+								</div>
+								<hr>
+								<div class="card-content">			
+								
+									<div id="card1" class="active" style="display:block">
+										<div class="row">
+											{% for prestito in prestito %}
+												<div class="card cardCatalogo blue col s3" style="border:2px solid white; padding:4px;" id="{{prestito[0]}}">		
+													<!--<span class="card-title activator white-text"><i class="small material-icons right">more_vert</i></span>-->
+													<div class="card-content blue text-white center-align">	
+														<ul class="collection" style="border:none;">
+														{% for x in range(lenP) %}
+															<li class="white-text" id="{{colonne[x]}}-{{prestito[0]}}"><i class="material-icons center">chevron_right</i>{{colonne[x]}}: {{prestito[x]}}</li>
+														{% endfor %}
+														</ul>
+													</div>
+													<!--<div class="card-reveal blue">
+														<span class="card-title white-text">Informazione libro<i class="material-icons right">close</i></span>
+														<ul class="collection" style="border:none;">
+															{% for attr2 in libri[0] %}
+																<center>
+																	<img class="activator blue immagine" src="data:image/jpg;base64, {{attr2[-1]}}">
+																</center>
+																<li class="white-text" style="max-height: 135px; overflow:scroll !important;"><i class="material-icons center">chevron_right</i> {{attr}}</li>
+															{% endfor %}
+														</ul>
+													</div>-->
+													<button id="btn_{{prestito[0]}}" class="btn-large waves-effect waves-light blue" type="submit" name="saldaPrestito" value="{{prestito[0]}}"><i class="large material-icons center">assignment_turned_in</i></button>
+												</div>						
+											{% endfor %}
+										</div>					
+									</div>				
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s6 offset-s3"></div>
+				</div>
+				
+			</div>
+
+			<div class="col s1"></div>
+		</div>
+
+		<footer class="page-footer blue waves-effect waves-block waves-ligh bottom" style="position:fixed; bottom:0; width: 100%;">
+			<div class="container">
+			  <div class="row">
+				<div class="col l6 s12">
+				  <h5 class="white-text">Biblioteca</h5>
+				  <p class="grey-text text-lighten-4">Comini - Follosco - Papa - Villanueva</p>
+	
+				</div>
+				<div class="col l3 s12">
+				  <h5 class="white-text"></h5>
+				  <ul>
+					<li><a class="white-text"></a></li>
+				  </ul>
+				</div>
+				<div class="col l3 s12">
+				  <h5 class="white-text">More</h5>
+				  <ul>
+					<li><a class="white-text" href="https://github.com/r-vil/machine_learning_biblioteca">GitHub</a></li>
+				  </ul>
+				</div>
+			  </div>
+			</div>
+		</footer>
+	</div>
+</body>
+
+		

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+	<title> Pagina Prova </title>
+	<meta charset="UTF-8">
+	<link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="row blue" style="margin-bottom: 0px !important;">
+      <div class="col s2">
+      </div>
+
+
+      <div class="col s10 white">
+
+        <div class="catalogo col s8 offset-s1">
+          {% for libro in libri %}
+          <div class="col s3 itemCatalogo blue">
+            <ul class="textCatalogo">
+              {% for attr in libro %}
+                <li>- {{attr}} </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endfor %}
+        </div>
+        
+      </div>
+    </div>
+<!--
+<ul>
+    {% for libro in libri %}
+    {% for attr in libro %}
+      <li> {{attr}} </li>
+  {% endfor %}
+  {% endfor %}
+</ul>
+-->
+
+</body>

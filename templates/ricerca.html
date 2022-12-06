@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<head>
+	<title> Ricerca </title>
+	<meta charset="UTF-8">
+	<link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<script type="text/javascript" src="/static/js/s1.js"></script>
+
+</head>
+
+
+<body class="blue">
+	
+	<div class="row" style="margin-bottom: 0px !important">		
+		<nav>
+			<div class="nav-wrapper blue">
+				<ul class="left hide-on-med-and-down">
+					<li><a class="btn blue btn-large waves-effect waves-light center-align" href="/"><i class="large material-icons">home</i></a>
+					</li>
+				</ul>
+				<ul class="right hide-on-med-and-down">
+					<li><a href="/ricerca">Cerca Libro</a></li>
+					<li><a href="/areaPrestiti">Area Prestiti</a></li>
+					<li><a href="/gestioneLibri">Gestione Libri</a></li>
+					<li><a onclick="location.reload();"><i class="material-icons">refresh</i></a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	
+	<div class="row blue full-height" style="margin-bottom: 0px !important;">
+		<div class="col s1"></div>
+
+		<div class="row col s10 center-align white">
+			<div class="row">
+				<br>
+				<div class="col s6 offset-s3 white-text z-depth-5 blue">
+					<form id="formRicerca" method="post" action="index" enctype="multipart/form-data">
+					<script>
+					$(window).ready(function() {
+						$("#formRicerca").on("keypress", function (event) {
+						    var key = event.keyCode || event.which;
+						    if (key === 13) {
+							event.preventDefault();
+							return false;
+						    }
+						});
+					});
+					</script>
+						<div class="card">
+							<div class="card-content white-text">
+								<p class="bold" style="font-size: 20px;"> Trova Libro </p>
+							</div>
+							<div class="card-tabs">
+								<ul class="tabs tabs-fixed-width tabs-transparent">
+									<li class="tab" id="t1" onclick="t1(); setFormMultipart(); copertina();"><a class="active" id="at1">Copertina</a></li>
+									<li class="tab" id="t2" onclick="t2(); removeFormMultipart(); noCopertina();"><a id="at2">Ricerca</a></li>
+									<li class="indicator"></li>
+								</ul>
+							</div>
+							<hr>
+							<div class="card-content">			
+							
+								<div id="card1" class="active" style="display:block">
+									<br>
+									<img id="preview" class="preview"/>
+									<div class="row">
+										<input type="file" id="file" style="display: none;" name="imgCopertina" onchange="previewImmagine(event)" accept=".jpg,.jpeg,.png" required></input>
+										<!-- enctype="multipart/form-data"  -->
+										<label for="file" class="blue-text btn-large waves-effect white"> Upload Copertina</label>
+									</div>
+									<div class="row">
+										<button id="upImgCop" class="btn-large waves-effect waves-light blue" type="submit" name="form2">Trova<i class="large material-icons right">search</i></button>
+									</div>
+									<p>{{errore}}</p>
+									<br>
+									{% for results in results %}
+										<div class="white-text z-depth-4">
+											<center>
+												<img class="activator blue immagine" src="data:image/jpg;base64, {{results[-1]}}">
+											</center>
+											{% for attr in results[:-1] %}
+												<li class="white-text" style="max-height: 135px; overflow:auto !important;"><i class="material-icons center">chevron_right</i> {{attr}}</li>
+											{% endfor %}
+										</div>	
+										<br>	
+									{% endfor %}
+									<br>
+								</div>
+
+								<div id="card2" style="display:none">
+									<div class="row">
+										<input class="titolo" placeholder="inserisci il titolo del libro" name = "titolo"></input>
+										<input class="isbn" placeholder="inserisci l'isbn del libro" name = "isbn"></input>
+										<input class="categoria" placeholder="inserisci la categoria del libro" name = "categoria"></input>
+									</div>
+									<div class="row">
+										<button class="btn-large waves-effect waves-light blue" type="submit" name="form1">Trova<i class="large material-icons right">search</i></button>
+									</div>	
+								</div>					
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s6 offset-s3">
+					<br>
+					<br>
+				</div>
+			</div>
+			
+		</div>
+
+	
+		<div class="col s1"></div>
+		
+	</div> 
+	<footer class="page-footer blue waves-effect waves-block waves-ligh bottom" style="position:fixed; bottom:0; width: 100%;">
+		<div class="container">
+		  <div class="row">
+			<div class="col l6 s12">
+			  <h5 class="white-text">Biblioteca</h5>
+			  <p class="grey-text text-lighten-4">Comini - Follosco - Papa - Villanueva</p>
+
+			</div>
+			<div class="col l3 s12">
+			  <h5 class="white-text"></h5>
+			  <ul>
+				<li><a class="white-text"></a></li>
+			  </ul>
+			</div>
+			<div class="col l3 s12">
+			  <h5 class="white-text">More</h5>
+			  <ul>
+				<li><a class="white-text" href="https://github.com/r-vil/machine_learning_biblioteca">GitHub</a></li>
+			  </ul>
+			</div>
+		  </div>
+		</div>
+	</footer>
+</body>

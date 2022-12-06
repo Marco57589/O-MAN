@@ -1,0 +1,133 @@
+body{
+  scrollbar-width: thin;
+  scrollbar-color: white white;
+  scrollbar-radius: 20px;
+}
+
+input{
+	color:white;
+}
+
+text{
+	color:white;
+}
+
+.refresh{
+	transition:2.5s; /* Transition duration */
+}
+
+.refresh:hover{
+	-o-transform:rotate(720deg);
+    -ms-transform:rotate(720deg);
+    -moz-transform:rotate(720deg);
+    -webkit-transform:rotate(720deg);
+    transform:rotate(720deg);
+}
+
+::placeholder{
+	color: white !important;
+	font-weight:bold;
+}
+
+.labelForm{
+	color:white !important;
+}
+
+.copyright{
+	background-color:none !important; 
+	font-size:14px;
+	position:absolute;
+	float:bottom !important;
+	color:white;
+	margin-top:3%;
+	margin-left:1%;
+}
+
+.card{
+	background:none !important;
+	width: 20vh !important;
+	height: 20vh;
+	border:2px solid gray !important;
+	border-radius:10px !important;
+	width: 23.75% !important;
+}
+
+.card_expanded{
+	animation-duration: 0.3s;
+	transition: height 0.4s;
+	height: 41.74vh !important;
+}
+
+/*
+.card:hover{
+	animation-duration: 0.3s;
+	transition: height 0.4s;
+	height: 41.55vh !important;
+}
+*/
+
+.catalogo{
+	overflow-x: hidden !important;
+	overflow-y: scroll !important;
+}
+
+
+.itemCatalogo{
+	border-radius: 15px;
+	border:2px solid white;
+}
+.textCatalogo{
+	padding-left:10px !important; 
+	padding-top: 9px !important;
+	padding-bottom: 9px !important;
+	prefix: '-';
+	text-align: left;
+	color:white;
+	margin:0px;
+	font-weight: bold;
+}
+
+.preview{
+	max-width:190px !important;
+	max-height: 300px !important;
+	padding-bottom:10px;
+	float:center !important;
+}
+
+/* Filter Buttons */
+.btn {
+	border-radius: 10px !important;
+	border: 1px solid white !important;
+	color: white;
+	font-size: 1.3vh !important;
+	background-color: #2196f3 !important;
+	font-weight: bold;
+	white-space: nowrap; /* Prevent text new line */
+}
+
+#myBtnContainer{
+	padding: 1vh;
+	border-bottom:2px solid white;
+	border-top:2px solid white;
+}
+
+
+.active, .btn2:hover, btn2:active {
+  background-color: #ddd;
+  border: 2px solid #2196f3 !important;
+  color: #2196f3 !important;
+  background-color: white !important;
+}
+
+
+.filterDiv{
+  display: none; /* Hidden by default */
+} 
+
+.mostra{
+	display: block;
+}
+
+/* --------- */
+
+
